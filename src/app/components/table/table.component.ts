@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() { }
+  playersSelected: boolean;
+  @Input() numPlayers: number;
+
+  constructor() {
+    this.numPlayers = 0;
+  }
 
   ngOnInit(): void {
+
+  }
+
+  selectedPlayers(numPlayersSelected) {
+    this.numPlayers = numPlayersSelected
   }
 
 }

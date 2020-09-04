@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { appRoutingProviders, routing } from './routes/app.routing';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StartComponent } from './components/start/start.component';
@@ -20,10 +22,12 @@ import { MonsterComponent } from './components/monster/monster.component';
   ],
   // modules and libraries loaded 
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing,
+    FormsModule
   ],
   // services 
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

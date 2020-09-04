@@ -1,1 +1,15 @@
-<p>start works!</p>
+<section class="start">
+    <form (ngSubmit)="toGame()">
+        <select [(ngModel)]="nPlayers" class="btn" name="nPlayers">
+            <option selected disabled>Número de jugadores</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <button type="submit" class="btn" [disabled]="!nPlayers">Jugar</button>
+
+    </form>
+
+    <a class="btn" href="https://www.youtube.com/watch?v=VKcXITTE144" target="_blank">Cómo Jugar</a>
+</section>

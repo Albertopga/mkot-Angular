@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-start',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  constructor() { }
+  nPlayers: number;
+  @Output() goToGame = new EventEmitter();
+
+  constructor() {
+    this.nPlayers = 0;
+  }
 
   ngOnInit(): void {
+  }
+
+  toGame() {
+    this.goToGame.emit(this.nPlayers)
   }
 
 }
