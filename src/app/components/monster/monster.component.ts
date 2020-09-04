@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Monster } from '../../models/monster.model'
+
 
 @Component({
   selector: 'app-monster',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monster.component.css']
 })
 export class MonsterComponent implements OnInit {
+
+  monster: Monster;
 
   constructor() { }
 

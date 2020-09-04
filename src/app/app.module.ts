@@ -9,6 +9,9 @@ import { BoardComponent } from './components/board/board.component';
 import { WinComponent } from './components/win/win.component';
 import { TableComponent } from './components/table/table.component';
 import { MonsterComponent } from './components/monster/monster.component';
+import { MonstersComponent } from './components/monsters/monsters.component';
+import { ActionsComponent } from './components/actions/actions.component';
+import { DiceComponent } from './components/dice/dice.component';
 
 @NgModule({
   // componentes,pipes...
@@ -18,7 +21,10 @@ import { MonsterComponent } from './components/monster/monster.component';
     BoardComponent,
     WinComponent,
     TableComponent,
-    MonsterComponent
+    MonsterComponent,
+    MonstersComponent,
+    ActionsComponent,
+    DiceComponent
   ],
   // modules and libraries loaded 
   imports: [

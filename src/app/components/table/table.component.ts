@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  playersSelected: boolean;
+
+
   @Input() numPlayers: number;
 
   constructor() {
@@ -15,7 +16,6 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   selectedPlayers(numPlayersSelected) {
