@@ -12,6 +12,7 @@ import { MonsterComponent } from './components/monster/monster.component';
 import { MonstersComponent } from './components/monsters/monsters.component';
 import { ActionsComponent } from './components/actions/actions.component';
 import { DiceComponent } from './components/dice/dice.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   // componentes,pipes...
@@ -24,7 +25,8 @@ import { DiceComponent } from './components/dice/dice.component';
     MonsterComponent,
     MonstersComponent,
     ActionsComponent,
-    DiceComponent
+    DiceComponent,
+    ButtonComponent
   ],
   // modules and libraries loaded 
   imports: [

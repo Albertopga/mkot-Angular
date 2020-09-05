@@ -8,15 +8,10 @@
 
 <!-- <button (click)="rollDice()">roll dice</button> -->
 <section id="actions" class="middle-wrapper">
-    <button id="roll" class="btn">
-        <span class="roll-icon icon"></span>Lanzar
-    </button>
-    <button id="endTurn" class="btn">
-        <span class="end-icon icon"></span>Finalizar
-    </button>
-    <button id="exit" class="btn">
-        <span class="exit-icon icon"></span>Salir
-    </button>
+    <app-button [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'" [disabled]="'false'"></app-button>
+    <app-button [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'" [disabled]="'false'"></app-button>
+    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" [disabled]="'false'"></app-button>
+
     <ul id="dices">
         <li *ngFor="let dice of dices">
             <app-dice></app-dice>

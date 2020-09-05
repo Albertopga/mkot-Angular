@@ -12,7 +12,7 @@ export class TableComponent implements OnInit {
   @Input() numPlayers: number;
 
   constructor() {
-    this.numPlayers = 0;
+    this.numPlayers = 1;
   }
 
   ngOnInit(): void {

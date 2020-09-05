@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Monster } from 'src/app/models/monster.model';
 
 @Component({
   selector: 'app-monsters',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonstersComponent implements OnInit {
 
-  constructor() { }
+  public monsters: Monster[];
+
+  @Input() numMonsters: number;
+
+  constructor() {
+    this.monsters = []
+  }
 
   ngOnInit(): void {
+
+  }
+
+  createMonsters() {
+    for (let i = 0; i < this.numMonsters; i++) {
+      this.monsters.push(new Monster(i, "s"))
+    }
   }
 
 }

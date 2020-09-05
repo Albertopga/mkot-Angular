@@ -1,9 +1,9 @@
-<div *ngIf="numPlayers == 0">
+<!-- <div *ngIf="numPlayers == 0"> -->
+<div *ngIf="numPlayers > 1">
     <app-start (goToGame)="selectedPlayers($event)"></app-start>
 </div>
 
-<div *ngIf="numPlayers > 0">
-    <app-board></app-board>
+<!-- <div *ngIf="numPlayers > 0"> -->
+<div *ngIf="numPlayers == 1">
+    <app-board [numMonsters]="numPlayers"></app-board>
 </div>
-
-<!-- <router-outlet></router-outlet> -->
