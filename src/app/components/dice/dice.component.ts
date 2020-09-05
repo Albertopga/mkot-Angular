@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dice } from '../../models/dice.model'
+
 
 @Component({
   selector: 'app-dice',
@@ -8,11 +8,48 @@ import { Dice } from '../../models/dice.model'
 })
 export class DiceComponent implements OnInit {
 
-  dice: Dice
+  image: string;
+  result: number;
+  selected: boolean;
 
-  constructor() { }
+  constructor() {
+    this.rollDice();
+    this.selected = false;
+  }
 
   ngOnInit(): void {
   }
 
+  ngDoCheck(): void {
+  }
+
+  rollDice() {
+    if (!this.selected) {
+      this.result = Math.floor(Math.random() * 6) + 1;
+      this.image = this.setDiceImage(this.result);
+    }
+  }
+
+  select() {
+    this.selected = !this.selected
+  }
+
+  private setDiceImage(resultado) {
+    switch (resultado) {
+      case 1:
+        return "/../assets/images/dices/dice1.jpg";
+      case 2:
+        return "/../assets/images/dices/dice2.jpg";
+      case 3:
+        return "/../assets/images/dices/dice3.jpg";
+      case 4:
+        return "/../assets/images/dices/diceAttack.jpg";
+      case 5:
+        return "/../assets/images/dices/diceEnergy.jpg";
+      case 6:
+        return "/../assets/images/dices/diceHealth.jpg";
+      default:
+        return "";
+    }
+  }
 }

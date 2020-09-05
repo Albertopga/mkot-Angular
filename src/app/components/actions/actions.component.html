@@ -1,7 +1,26 @@
-<!-- 
+<!--
     DiceComponent[]
     btn. tirar
     btn. finalizar
     btn. salir
  -->
-<p>actions works!</p>
+
+
+<!-- <button (click)="rollDice()">roll dice</button> -->
+<section id="actions" class="middle-wrapper">
+    <button id="roll" class="btn">
+        <span class="roll-icon icon"></span>Lanzar
+    </button>
+    <button id="endTurn" class="btn">
+        <span class="end-icon icon"></span>Finalizar
+    </button>
+    <button id="exit" class="btn">
+        <span class="exit-icon icon"></span>Salir
+    </button>
+    <ul id="dices">
+        <li *ngFor="let dice of dices">
+            <app-dice></app-dice>
+        </li>
+    </ul>
+
+</section>

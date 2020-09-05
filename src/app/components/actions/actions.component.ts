@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DiceComponent } from '../dice/dice.component'
 
 @Component({
   selector: 'app-actions',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionsComponent implements OnInit {
 
-  constructor() { }
+  // @Input() rollDices
+  dices: DiceComponent[];
+
+
+  constructor() {
+    this.dices = [
+      new DiceComponent(),
+      new DiceComponent(),
+      new DiceComponent(),
+      new DiceComponent(),
+      new DiceComponent(),
+      new DiceComponent()
+    ]
+  }
 
   ngOnInit(): void {
   }
