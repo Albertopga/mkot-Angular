@@ -4,8 +4,8 @@
  -->
 
 <section id="info">
-    <div class="container container_column">
-        <!-- <app-monster></app-monster> -->
+    <div class="container container_column" *ngFor="let monster of monsters">
+        <app-monster [monster]="monster"></app-monster>
     </div>
 </section>
 

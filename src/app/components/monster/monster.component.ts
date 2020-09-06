@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Monster } from '../../models/monster.model'
 
 
@@ -9,11 +9,15 @@ import { Monster } from '../../models/monster.model'
 })
 export class MonsterComponent implements OnInit {
 
-  monster: Monster;
+  @Input() monster: Monster;
 
-  constructor() { }
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
+    console.log(this.monster)
   }
 
 }

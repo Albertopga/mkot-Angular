@@ -1,3 +1,16 @@
 export class Monster {
-    constructor(health: number = 10, victory: number = 0, energy: number = 0, name: string, image: string) { }
+
+    name: string;
+    image: string;
+    health: number;
+    energy: number;
+    victory: number;
+
+    constructor(name: string, image: string) {
+        this.name = name;
+        this.image = image;
+        this.health = 10;
+        this.energy = 0;
+        this.victory = 0;
+    }
 }

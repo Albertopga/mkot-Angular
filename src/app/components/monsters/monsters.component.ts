@@ -17,12 +17,12 @@ export class MonstersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.createMonsters()
   }
 
   createMonsters() {
-    for (let i = 0; i < this.numMonsters; i++) {
-      this.monsters.push(new Monster(i, "s"))
+    for (let i = 1; i <= this.numMonsters; i++) {
+      this.monsters.push(new Monster("Monster " + i, "../../assets/images/avatares/def.png"))
     }
   }
 

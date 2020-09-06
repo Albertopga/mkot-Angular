@@ -12,6 +12,7 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log("num Monsters selected: " + this.numMonsters)
   }
 
 }
