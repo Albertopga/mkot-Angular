@@ -351,7 +351,7 @@ option:disabled {
   grid-row: 2/6;
   display: flex;
   flex-flow: column;
-  margin-left: 10px;
+  margin-left: 10px;  
 }
 #resumenTurno {
   grid-column: 1/2;

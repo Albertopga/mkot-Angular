@@ -13,11 +13,9 @@ export class MonsterComponent implements OnInit {
 
 
   constructor() {
-
   }
 
   ngOnInit(): void {
-    console.log(this.monster)
   }
 
 }

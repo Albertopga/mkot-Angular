@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DiceComponent } from '../dice/dice.component'
 
 @Component({
@@ -8,22 +8,25 @@ import { DiceComponent } from '../dice/dice.component'
 })
 export class ActionsComponent implements OnInit {
 
-  // @Input() rollDices
   dices: DiceComponent[];
-
+  roll: boolean;
 
   constructor() {
-    this.dices = [
-      new DiceComponent(),
-      new DiceComponent(),
-      new DiceComponent(),
-      new DiceComponent(),
-      new DiceComponent(),
-      new DiceComponent()
-    ]
+    this.roll = false;
+    this.dices = []
   }
 
   ngOnInit(): void {
   }
 
+  rollDices() {
+    for (const dice of this.dices) {
+      dice.roll()
+    }
+  }
+
+  takeDIce($event) {
+    this.dices.push($event.dice)
+    console.log(this.dices)
+  }
 }

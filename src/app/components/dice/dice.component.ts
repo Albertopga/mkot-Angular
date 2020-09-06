@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -12,18 +12,24 @@ export class DiceComponent implements OnInit {
   result: number;
   selected: boolean;
 
+  @Output() objDice = new EventEmitter();
+
   constructor() {
-    this.rollDice();
+    this.roll();
     this.selected = false;
   }
 
   ngOnInit(): void {
+    this.objDice.emit({
+      dice: this
+    });
   }
 
-  ngDoCheck(): void {
+  ngOnChanges() {
   }
 
-  rollDice() {
+
+  roll() {
     if (!this.selected) {
       this.result = Math.floor(Math.random() * 6) + 1;
       this.image = this.setDiceImage(this.result);

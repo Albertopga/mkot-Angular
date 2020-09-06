@@ -6,16 +6,29 @@
  -->
 
 
-<!-- <button (click)="rollDice()">roll dice</button> -->
+
 <section id="actions" class="middle-wrapper">
-    <app-button [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'" [disabled]="'false'"></app-button>
-    <app-button [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'" [disabled]="'false'"></app-button>
-    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" [disabled]="'false'"></app-button>
+    <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'"
+        [disabled]="'false'"></app-button>
+
+    <!-- <app-button [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'" [disabled]="'false'"></app-button>
+    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" [disabled]="'false'"></app-button> -->
 
     <ul id="dices">
-        <li *ngFor="let dice of dices">
-            <app-dice></app-dice>
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
         </li>
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
+        </li>
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
+        </li>
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
+        </li>
+
+
     </ul>
 
 </section>
