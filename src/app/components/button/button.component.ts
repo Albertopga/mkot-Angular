@@ -12,14 +12,10 @@ export class ButtonComponent implements OnInit {
   @Input() id: string;
   @Input() text: string;
   @Input() spanClass: string;
-  @Input() disabled: string;
+  //@Input() disabled: string;
 
   ngOnInit(): void {
 
   }
 
 }
-
-// <button id="roll" class="btn">
-//     <span class="roll-icon icon"></span>Lanzar
-// </button>

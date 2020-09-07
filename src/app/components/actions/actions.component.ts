@@ -27,6 +27,5 @@ export class ActionsComponent implements OnInit {
 
   takeDIce($event) {
     this.dices.push($event.dice)
-    console.log(this.dices)
   }
 }

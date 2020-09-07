@@ -8,11 +8,12 @@
 
 
 <section id="actions" class="middle-wrapper">
-    <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'"
-        [disabled]="'false'"></app-button>
+    <div>
+        <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'"></app-button>
+    </div>
 
-    <!-- <app-button [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'" [disabled]="'false'"></app-button>
-    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" [disabled]="'false'"></app-button> -->
+    <!-- <app-button [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'" ></app-button>
+    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" ></app-button> -->
 
     <ul id="dices">
         <li>
@@ -27,8 +28,12 @@
         <li>
             <app-dice (objDice)="takeDIce($event)"></app-dice>
         </li>
-
-
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
+        </li>
+        <li>
+            <app-dice (objDice)="takeDIce($event)"></app-dice>
+        </li>
     </ul>
 
 </section>
