@@ -1,7 +1,7 @@
 <section class="start">
     <form (ngSubmit)="toGame()">
-        <select class="btn" name="nPlayers" [(ngModel)]="nPlayers">
-            <option selected disabled>Número de jugadores</option>
+        <select class="btn" name="nPlayers" [(ngModel)]="nPlayers" ng-init="nPlayers='0'">
+            <option disabled value="0">Número de jugadores</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
