@@ -1,12 +1,10 @@
-<!-- 
-    ActionsComponent
-    MonsterComponent [ ]
- -->
-
 <section id="info">
     <div class="container container_column" *ngFor="let monster of monsters">
-        <app-monster [monster]="monster"></app-monster>
+        <app-monster [monster]="monster" [ngClass]="{
+            'activo': monster.activate, 
+            ' ': monster.activate
+        }"></app-monster>
     </div>
 </section>
 
-<app-actions></app-actions>
+<app-actions [monsters]="monsters"></app-actions>
