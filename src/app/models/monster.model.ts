@@ -1,3 +1,5 @@
+import { Globals } from 'src/globals';
+
 export class Monster {
 
     name: string;
@@ -10,9 +12,9 @@ export class Monster {
     dead: boolean;
     winner: boolean;
 
-    constructor(name: string, image: string) {
-        this.name = name;
-        this.image = image;
+    constructor() {
+        this.name = "Monster";
+        this.image = Globals.imgDefault;
         this.health = 10;
         this.energy = 0;
         this.victory = 0;

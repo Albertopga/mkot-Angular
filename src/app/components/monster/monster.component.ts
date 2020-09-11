@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Monster } from '../../models/monster.model'
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Globals } from '../../../globals'
 
 @Component({
@@ -9,13 +8,34 @@ import { Globals } from '../../../globals'
 })
 export class MonsterComponent implements OnInit {
 
-  @Input() monster: Monster;
-
+  @Output() objMonster = new EventEmitter();
+  name: string;
+  image: string;
+  health: number;
+  energy: number;
+  victory: number;
+  activate: boolean;
+  inTokyo: boolean;
+  dead: boolean;
+  winner: boolean;
 
   constructor() {
+    this.name = "Monstruo ";
+    this.image = Globals.imgDefault;
+    this.health = 10;
+    this.energy = 0;
+    this.victory = 0;
+    this.activate = false;
+    this.inTokyo = false;
+    this.dead = false;
+    this.winner = false;
   }
 
   ngOnInit(): void {
+
+    this.objMonster.emit({
+      monster: this
+    });
   }
 
   heal(recovered_health: number) {

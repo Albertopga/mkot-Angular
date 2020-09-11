@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Monster } from 'src/app/models/monster.model';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { MonsterComponent } from '../monster/monster.component';
 
 @Component({
   selector: 'app-monsters',
@@ -8,24 +8,39 @@ import { Monster } from 'src/app/models/monster.model';
 })
 export class MonstersComponent implements OnInit {
 
-  public monsters: Monster[];
-  public activeMonster: Monster;
-
+  monsters: MonsterComponent[];
+  nMonsters: number[]
+  ok: boolean;
+  private contMonsters = 1;
   @Input() numMonsters: number;
+  @Output() objMonsters = new EventEmitter();
 
   constructor() {
     this.monsters = [];
+    this.nMonsters = [];
+    this.ok = false;
   }
 
   ngOnInit(): void {
     this.createMonsters()
-    this.activeMonster = this.monsters[0]
-    this.activeMonster.activate = true
   }
 
   createMonsters() {
     for (let i = 1; i <= this.numMonsters; i++) {
-      this.monsters.push(new Monster(`Monster ${i}`, `../../assets/images/avatares/${i}.jpg`))
+      this.nMonsters.push(i)
     }
   }
+
+  takeMonster($event: { monster: MonsterComponent }) {
+
+    const tempMonster = $event.monster
+    tempMonster.name = "Monster " + this.contMonsters
+    tempMonster.image = `../../../assets/images/avatares/${this.contMonsters}.jpg`
+    this.monsters.push(tempMonster)
+
+    if (this.contMonsters == this.numMonsters) { return }
+
+    this.contMonsters++
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DiceComponent } from '../dice/dice.component';
 
 @Component({
   selector: 'app-board',
@@ -8,11 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BoardComponent implements OnInit {
 
   @Input() numMonsters: number;
+  componente: string
 
-  constructor() { }
+  constructor() {
+    this.componente = "<app-dice></app-dice>"
+  }
 
   ngOnInit(): void {
-    // console.log("num Monsters selected: " + this.numMonsters)
+
   }
 
 }

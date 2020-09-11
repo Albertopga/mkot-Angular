@@ -1,9 +1,6 @@
 <section id="info">
-    <div class="container container_column" *ngFor="let monster of monsters">
-        <app-monster [monster]="monster" [ngClass]="{
-            'activo': monster.activate, 
-            ' ': monster.activate
-        }"></app-monster>
+    <div class="container container_column">
+        <app-monster *ngFor="let monster of nMonsters" (objMonster)=takeMonster($event)></app-monster>
     </div>
 </section>
 

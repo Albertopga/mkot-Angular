@@ -1,12 +1,15 @@
-<section class="card">
-    <h1>{{monster.name}}</h1>
-    <img src="{{monster.image}}" alt="monsters-avatar">
+<section [ngClass]="{
+    'activo card': activate, 
+    'card': !activate
+}">
+    <h1>{{name}}</h1>
+    <img src="{{image}}" alt="monsters-avatar">
     <article class="datos">
         <img src="../../../assets/images/estrella.png" alt="victory-points">
-        <p>{{monster.victory}}</p>
+        <p>{{victory}}</p>
         <img src="../../../assets/images/corazon.png" alt="health-points">
-        <p>{{monster.health}}</p>
+        <p>{{health}}</p>
         <img src="../../../assets/images/energia.png" alt="energy-points">
-        <p>{{monster.energy}}</p>
+        <p>{{energy}}</p>
     </article>
 </section>
