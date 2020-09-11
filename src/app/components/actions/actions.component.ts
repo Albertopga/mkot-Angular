@@ -80,8 +80,10 @@ export class ActionsComponent implements OnInit {
         }
       }
       console.log(`gana ${value} puntos por el ${i}`)
-      if (value > 0) this.activeMonster
-      // value = 0;
+      if (value > 0) {
+        this.activeMonster
+        // value = 0;
+      }
     }
   }
 
