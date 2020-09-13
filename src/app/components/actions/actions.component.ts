@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DiceComponent } from '../dice/dice.component'
 import { MonsterComponent } from '../monster/monster.component';
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ActionsComponent implements OnInit {
   numberOfRoll: number;
   activeMonster: MonsterComponent;
   contMonsters: number;
+  inTokyo: MonsterComponent;
 
   constructor() {
     this.roll = false;
@@ -83,14 +85,39 @@ export class ActionsComponent implements OnInit {
     const health = this.dices.filter((dice) => dice.result === 6).length;
 
     this.activeMonster.gainEnergy(energy)
-    this.activeMonster.heal(health)
-
+    if (this.activeMonster != this.inTokyo) { this.activeMonster.heal(health) }
     this.calculateStars();
+    this.calculateDamage(hit);
 
+    this.monsters = this.monsters.filter((monster) => !monster.dead)
+  }
+
+  calculateDamage(hit: number) {
+    // if there is no monster in tokyo, the first to hit another moves to tokyo
+    if (this.inTokyo == undefined) {
+      this.inTokyo = this.activeMonster;
+      return;
+    }
+    //if the active monster is in tokyo, it damages everyone else, otherwise it only damages the monster that is in tokyo
+    if (this.activeMonster == this.inTokyo) {
+      this.damageOthers(hit);
+    } else {
+      this.inTokyo.hurt(hit)
+      if (this.inTokyo.dead) { this.inTokyo = this.activeMonster } else {
+        // display the message "Monster active, want to leave Tokyo"
+      }
+    }
+  }
+
+  damageOthers(hit: number) {
+    this.monsters.map((monster) => {
+      if (monster.name != this.inTokyo.name) {
+        monster.hurt(hit)
+      }
+    })
   }
 
   calculateStars() {
-    console.log("Resultado de tiradas de " + this.activeMonster.name)
     let value = 0;
     for (let i = 1; i <= 3; i++) {
       const equalNumbers = this.dices.filter((dice) => dice.result === i).length;
@@ -106,8 +133,10 @@ export class ActionsComponent implements OnInit {
         this.activeMonster.gainStars(value)
         value = 0;
       }
+
     }
   }
+
 
   nextMonster() {
     for (let index = 0; index < this.monsters.length; index++) {

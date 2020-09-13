@@ -27,7 +27,6 @@ export class MonsterComponent implements OnInit {
     this.energy = 0;
     this.victory = 0;
     this.activate = false;
-    this.inTokyo = false;
     this.dead = false;
     this.winner = false;
   }
@@ -41,9 +40,6 @@ export class MonsterComponent implements OnInit {
   }
 
   heal(recovered_health: number) {
-    // If the monsters are in Tokyo, they can't be cured
-    if (this.inTokyo) { return false } // provisional return
-
     // it not possible recover more points health than the maxHealth value
     const res = this.health + recovered_health;
     this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
