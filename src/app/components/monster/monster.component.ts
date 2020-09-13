@@ -66,7 +66,7 @@ export class MonsterComponent implements OnInit {
   }
 
   gainEnergy(energy: number) {
-    this.victory += energy
+    this.energy += energy
   }
 
   // when I implement the cards, make sure this function does what I expect

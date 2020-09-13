@@ -82,14 +82,15 @@ export class ActionsComponent implements OnInit {
     const energy = this.dices.filter((dice) => dice.result === 5).length;
     const health = this.dices.filter((dice) => dice.result === 6).length;
 
-    this.activeMonster.gainEnergy(energy)
-    this.activeMonster.heal(health)
+    //this.activeMonster.gainEnergy(energy)
+    //this.activeMonster.heal(health)
 
     this.calculateStars();
 
   }
 
   calculateStars() {
+    console.log("Resultado de tiradas de " + this.activeMonster.name)
     let value = 0;
     for (let i = 1; i <= 3; i++) {
       const equalNumbers = this.dices.filter((dice) => dice.result === i).length;
@@ -100,10 +101,12 @@ export class ActionsComponent implements OnInit {
           value = value + (equalNumbers - 3);
         }
       }
-      console.log(`gana ${value} puntos por el ${i}`)
+
       if (value > 0) {
-        this.activeMonster
-        // value = 0;
+        // console.log(`${i} iguales: ${equalNumbers}`)
+        // console.log(`gana ${value} puntos por el ${i}\n----------------------------`)
+        this.activeMonster.gainStars(value)
+        value = 0;
       }
     }
   }
@@ -118,7 +121,6 @@ export class ActionsComponent implements OnInit {
         this.activeMonster.activate = true;
         break
       }
-
     }
   }
 }
