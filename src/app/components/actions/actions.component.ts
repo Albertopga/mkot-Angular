@@ -82,8 +82,8 @@ export class ActionsComponent implements OnInit {
     const energy = this.dices.filter((dice) => dice.result === 5).length;
     const health = this.dices.filter((dice) => dice.result === 6).length;
 
-    //this.activeMonster.gainEnergy(energy)
-    //this.activeMonster.heal(health)
+    this.activeMonster.gainEnergy(energy)
+    this.activeMonster.heal(health)
 
     this.calculateStars();
 
@@ -103,8 +103,6 @@ export class ActionsComponent implements OnInit {
       }
 
       if (value > 0) {
-        // console.log(`${i} iguales: ${equalNumbers}`)
-        // console.log(`gana ${value} puntos por el ${i}\n----------------------------`)
         this.activeMonster.gainStars(value)
         value = 0;
       }

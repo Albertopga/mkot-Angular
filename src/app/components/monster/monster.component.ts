@@ -21,9 +21,9 @@ export class MonsterComponent implements OnInit {
   winner: boolean;
 
   constructor() {
-    this.name = "Monster default ";
+    this.name = "Monster default";
     this.image = Globals.imgDefault;
-    this.health = 10;
+    this.health = Globals.maxHealth;
     this.energy = 0;
     this.victory = 0;
     this.activate = false;
