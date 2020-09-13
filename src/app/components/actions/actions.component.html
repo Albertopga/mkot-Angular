@@ -4,8 +4,12 @@
     btn. finalizar
     btn. salir
  -->
-
-
+<section id="info">
+    <div class="container container_column">
+        <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
+        </app-monster>
+    </div>
+</section>
 
 <section id="actions" class="middle-wrapper">
     <div>
