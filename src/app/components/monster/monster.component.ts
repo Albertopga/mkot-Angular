@@ -9,6 +9,7 @@ import { Globals } from '../../../globals'
 export class MonsterComponent implements OnInit {
 
   @Output() objMonster = new EventEmitter();
+  @Input() index: number
   name: string;
   image: string;
   health: number;
@@ -20,7 +21,7 @@ export class MonsterComponent implements OnInit {
   winner: boolean;
 
   constructor() {
-    this.name = "Monstruo ";
+    this.name = "Monster default ";
     this.image = Globals.imgDefault;
     this.health = 10;
     this.energy = 0;
@@ -32,7 +33,8 @@ export class MonsterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.name = `Monster ${this.index}`;
+    this.image = `../../../assets/images/avatares/${this.index}.jpg`;
     this.objMonster.emit({
       monster: this
     });
@@ -40,44 +42,44 @@ export class MonsterComponent implements OnInit {
 
   heal(recovered_health: number) {
     // If the monsters are in Tokyo, they can't be cured
-    if (this.monster.inTokyo) { return false } // provisional return
+    if (this.inTokyo) { return false } // provisional return
 
     // it not possible recover more points health than the maxHealth value
-    const res = this.monster.health + recovered_health;
-    this.monster.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
+    const res = this.health + recovered_health;
+    this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
   }
 
   hurt(lost_health: number) {
-    const res = this.monster.health - lost_health;
-    this.monster.health = res > 0 ? res : 0;
-    if (this.monster.health <= 0) { this.monster.dead = true; }
+    const res = this.health - lost_health;
+    this.health = res > 0 ? res : 0;
+    if (this.health <= 0) { this.dead = true; }
   }
 
   gainStars(stars: number) {
-    this.monster.victory += stars
-    if (this.monster.victory >= Globals.victory) { this.monster.winner = true }
+    this.victory += stars
+    if (this.victory >= Globals.victory) { this.winner = true }
   }
 
   lostStars(stars: number) {
-    const res = this.monster.victory -= stars
-    this.monster.victory = res < 0 ? res : 0
+    const res = this.victory -= stars
+    this.victory = res < 0 ? res : 0
   }
 
   gainEnergy(energy: number) {
-    this.monster.victory += energy
+    this.victory += energy
   }
 
-  // when I implement the cards make sure this function does what I expect
+  // when I implement the cards, make sure this function does what I expect
   lostEnergy(energy: number) {
-    const res = this.monster.energy -= energy
-    this.monster.energy = res > 0 ? res : 0
+    const res = this.energy -= energy
+    this.energy = res > 0 ? res : 0
   }
 
   enterTokyo() {
-    this.monster.inTokyo = true;
+    this.inTokyo = true;
   }
 
   leaveTokyo() {
-    this.monster.inTokyo = false;
+    this.inTokyo = false;
   }
 }

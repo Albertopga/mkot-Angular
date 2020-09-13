@@ -12,7 +12,6 @@ export class BoardComponent implements OnInit {
   componente: string
 
   constructor() {
-    this.componente = "<app-dice></app-dice>"
   }
 
   ngOnInit(): void {

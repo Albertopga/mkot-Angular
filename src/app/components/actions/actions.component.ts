@@ -10,25 +10,41 @@ import { MonsterComponent } from '../monster/monster.component';
 })
 export class ActionsComponent implements OnInit {
 
+  @Input() nPlayers: number;
+  numMonsters: number[];
+  monsters: MonsterComponent[];
   dices: DiceComponent[];
   roll: boolean;
   numberOfRoll: number;
   activeMonster: MonsterComponent;
-  @Input() monsters: [MonsterComponent];
-  @Input() ok: boolean;
+  contMonsters: number;
 
   constructor() {
     this.roll = false;
     this.dices = [];
+    this.numMonsters = [];
+    this.monsters = [];
+    this.contMonsters = 0;
 
   }
+
   ngOnChanges(): void {
-
-
   }
 
   ngOnInit(): void {
+    this.createMonsters();
+  }
 
+  createMonsters() {
+    for (let i = 1; i <= this.nPlayers; i++) {
+      this.numMonsters.push(i)
+    }
+  }
+
+  takeMonster($event: { monster: MonsterComponent }) {
+    if (this.contMonsters == 0) { $event.monster.activate = true, this.activeMonster = $event.monster }
+    this.monsters.push($event.monster);
+    this.contMonsters++;
   }
 
   takeDice($event: { dice: DiceComponent; }) {
@@ -48,11 +64,17 @@ export class ActionsComponent implements OnInit {
     }
   }
 
+  newTurn() {
+    this.numberOfRoll = 0;
+    this.dices.map((dice) => dice.selected = false)
+    this.nextMonster();
+    this.rollDices()
+
+  }
+
   endTurn() {
-    console.log("end of turn clicked and the number of rolls are: " + this.numberOfRoll)
-    this.newTurn()
-    console.log("and now is: " + this.numberOfRoll)
     this.applyResults();
+    this.newTurn()
   }
 
   applyResults() {
@@ -73,7 +95,6 @@ export class ActionsComponent implements OnInit {
       const equalNumbers = this.dices.filter((dice) => dice.result === i).length;
 
       if (equalNumbers >= 3) {
-
         value = i;
         if (equalNumbers - 3 > 0) {
           value = value + (equalNumbers - 3);
@@ -87,9 +108,17 @@ export class ActionsComponent implements OnInit {
     }
   }
 
-  newTurn() {
-    this.numberOfRoll = 0;
-    this.dices.map((dice) => dice.selected = false)
-    this.rollDices()
+  nextMonster() {
+    for (let index = 0; index < this.monsters.length; index++) {
+      if (this.monsters[index].activate === true) {
+        this.activeMonster.activate = false;
+        if (index == this.monsters.length - 1) { this.activeMonster = this.monsters[0] }
+        else { this.activeMonster = this.monsters[index + 1] }
+
+        this.activeMonster.activate = true;
+        break
+      }
+
+    }
   }
 }
