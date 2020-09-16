@@ -1,3 +1,47 @@
 .disabled {
-    cursor: not-allowed;
+  cursor: not-allowed;
+}
+.btn {
+  background: white;
+  border: 2px solid #c7c7c7;
+  border-radius: 40px;
+  text-align-last: center;
+  color: black;
+  font-weight: bold;
+  max-width: 450px;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  border: 2px solid #90cf40;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.icon {
+  width: 18px;
+  height: 16px;
+  display: inline-block;
+  position: relative;
+  margin-right: 0.25em;
+  font-size: 1.5rem;
+}
+
+.roll-icon {
+  background: url('../../../assets/images/icons/dice-icon-mini.png') no-repeat
+    center;
+  background-size: 100%;
+}
+
+.end-icon {
+  background: url('../../../assets/images/icons/next.png') no-repeat center;
+  background-size: 100%;
+}
+
+.exit-icon {
+  background: url('../../../assets/images/icons/exitR.png') no-repeat center;
+  background-size: 100%;
 }

@@ -1,0 +1,8 @@
+#tablero {
+  position: relative;
+  grid-column: 1/2;
+  grid-row: 3/4;
+  background: url('../../../assets/images/tablero.jpg') no-repeat top center;
+  background-size: contain;
+  margin-top: 10px;
+}

@@ -39,7 +39,8 @@
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>
         </li>
-
     </ul>
-
 </section>
+<div *ngIf="notice">
+    <app-notice></app-notice>
+</div>

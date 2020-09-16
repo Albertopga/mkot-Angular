@@ -96,7 +96,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -107,13 +107,13 @@ button:focus {
   outline: none;
 }
 /* End Reset */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
 @font-face {
-  font-family: "GoodGirl";
+  font-family: 'GoodGirl';
   font-style: normal;
   font-weight: normal;
-  src: url("/src/assets/fonts/GOODGIRL.TTF") format("ttf");
+  src: url('/src/assets/fonts/GOODGIRL.TTF') format('ttf');
 }
 body,
 span,
@@ -121,12 +121,12 @@ a,
 select,
 option,
 button {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 body {
   margin: 0 auto;
-  background: url("../images/mesa.jpg") no-repeat center;
+  background: url('../images/mesa.jpg') no-repeat center;
 }
 h1 {
   font-family: GoodGirl;
@@ -189,73 +189,13 @@ li img,
   flex-flow: row;
   align-items: stretch;
 }
-.btn {
-  background: white;
-  border: 2px solid #c7c7c7;
-  border-radius: 40px;
-  text-align-last: center;
-  color: black;
-  font-weight: bold;
-  max-width: 450px;
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-  margin: 0 auto;
-}
-.btn:hover {
-  border: 2px solid #90cf40;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-.icon {
-  width: 18px;
-  height: 16px;
-  display: inline-block;
-  position: relative;
-  margin-right: 0.25em;
-  font-size: 1.5rem;
-}
-.roll-icon {
-  background: url("../images/icons/dice-icon-mini.png") no-repeat center;
-  background-size: 100%;
-}
-.end-icon {
-  background: url("../images/icons/next.png") no-repeat center;
-  background-size: 100%;
-}
-.exit-icon {
-  background: url("../images/icons/exitR.png") no-repeat center;
-  background-size: 100%;
-}
+
 .tokyo {
   width: 50%;
   max-width: 150px;
   position: absolute;
 }
 
-/*****************************************************/
-/*Altura de pantalla superior a 600px*/
-/**Pantalla de inicio y ganador **/
-#comenzar {
-  width: 100%;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 50px 50px 50px 1fr;
-}
-#comenzar,
-#mesa {
-  position: relative;
-  height: 98vh;
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-#comenzar,
-#ganador {
-  background: url("../images/king-of-tokyo.jpg") no-repeat center;
-  background-size: cover;
-}
 option {
   background: white;
   color: black;
@@ -338,20 +278,13 @@ option:disabled {
   margin: 10px auto;
   justify-content: space-between;
 }
-#tablero {
-  position: relative;
-  grid-column: 1/2;
-  grid-row: 3/4;
-  background: url("../images/tablero.jpg") no-repeat top center;
-  background-size: contain;
-  margin-top: 10px;
-}
+
 #info {
   grid-column: 2/3;
   grid-row: 2/6;
   display: flex;
   flex-flow: column;
-  margin-left: 10px;  
+  margin-left: 10px;
 }
 #resumenTurno {
   grid-column: 1/2;

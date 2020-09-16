@@ -1,0 +1,33 @@
+section {
+  background: url('../../../assets/images/king-of-tokyo.jpg') no-repeat center;
+  background-size: cover;
+  height: 98vh;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 50px 50px 50px 1fr;
+  text-align: center;
+}
+
+.btn {
+  background: white;
+  border: 2px solid #c7c7c7;
+  border-radius: 40px;
+  text-align-last: center;
+  color: black;
+  font-weight: bold;
+  max-width: 450px;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  border: 2px solid #90cf40;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}

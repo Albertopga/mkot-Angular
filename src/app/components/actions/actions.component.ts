@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DiceComponent } from '../dice/dice.component'
 import { MonsterComponent } from '../monster/monster.component';
-import { empty } from 'rxjs';
 
 
 @Component({
@@ -20,6 +19,7 @@ export class ActionsComponent implements OnInit {
   activeMonster: MonsterComponent;
   contMonsters: number;
   inTokyo: MonsterComponent;
+  notice: boolean;
 
   constructor() {
     this.roll = false;
@@ -27,7 +27,7 @@ export class ActionsComponent implements OnInit {
     this.numMonsters = [];
     this.monsters = [];
     this.contMonsters = 0;
-
+    this.notice = false;
   }
 
   ngOnChanges(): void {
