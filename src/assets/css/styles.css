@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+@font-face {
+  font-family: 'GoodGirl';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/src/assets/fonts/GOODGIRL.TTF') format('ttf');
+}
+
 /* Reset */
 big,
 cite,
@@ -108,14 +117,6 @@ button:focus {
 }
 /* End Reset */
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-
-@font-face {
-  font-family: 'GoodGirl';
-  font-style: normal;
-  font-weight: normal;
-  src: url('/src/assets/fonts/GOODGIRL.TTF') format('ttf');
-}
 body,
 span,
 a,
