@@ -1,21 +1,13 @@
-<!--
-    DiceComponent[]
-    btn. tirar
-    btn. finalizar
-    btn. salir
- -->
-<section id="info">
-    <div class="container container_column">
-        <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
-        </app-monster>
-    </div>
+<section id="info" class="container container_column">
+
+    <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
+    </app-monster>
+
 </section>
 
 <section id="actions" class="middle-wrapper">
-    <div>
-        <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'">
-        </app-button>
-    </div>
+    <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'">
+    </app-button>
 
     <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'"></app-button>
     <!--<app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" ></app-button> -->
@@ -41,6 +33,6 @@
         </li>
     </ul>
 </section>
-<div *ngIf="notice">
+<!-- <div *ngIf="notice">
     <app-notice></app-notice>
-</div>
+</div> -->

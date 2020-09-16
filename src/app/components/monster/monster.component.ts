@@ -17,6 +17,7 @@ export class MonsterComponent implements OnInit {
   victory: number;
   activate: boolean;
   inTokyo: boolean;
+  inTokyoBay: boolean;
   dead: boolean;
   winner: boolean;
 
@@ -29,11 +30,15 @@ export class MonsterComponent implements OnInit {
     this.activate = false;
     this.dead = false;
     this.winner = false;
+    this.inTokyo = false;
+    this.inTokyoBay = false;
+
   }
 
   ngOnInit(): void {
     this.name = `Monster ${this.index}`;
-    this.image = `../../../assets/images/avatares/${this.index}.jpg`;
+    // this.image = `../../../assets/images/avatares/${this.index}.jpg`;
+    this.image = `../assets/images/avatares/def.png`;
     this.objMonster.emit({
       monster: this
     });
