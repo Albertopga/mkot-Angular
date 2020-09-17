@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DiceComponent } from '../dice/dice.component'
 import { MonsterComponent } from '../monster/monster.component';
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { MonsterComponent } from '../monster/monster.component';
 export class ActionsComponent implements OnInit {
 
   @Input() nPlayers: number;
+  @Output() objMonsters = new EventEmitter();
+
   numMonsters: number[];
   monsters: MonsterComponent[];
   dices: DiceComponent[];
@@ -18,7 +21,7 @@ export class ActionsComponent implements OnInit {
   numberOfRoll: number;
   activeMonster: MonsterComponent;
   contMonsters: number;
-  inTokyo: MonsterComponent;
+  inTokyo: any;
   notice: boolean;
 
   constructor() {
@@ -29,9 +32,11 @@ export class ActionsComponent implements OnInit {
     this.contMonsters = 0;
     this.notice = false;
     this.numberOfRoll = 1;
+    this.inTokyo = empty;
   }
 
   ngOnChanges(): void {
+
   }
 
   ngOnInit(): void {
@@ -77,7 +82,16 @@ export class ActionsComponent implements OnInit {
 
   endTurn() {
     this.applyResults();
+    this.isWinner()
     this.newTurn()
+  }
+
+  isWinner() {
+    if (this.monsters.length == 1) {
+      this.objMonsters.emit({
+        monsters: this.monsters
+      });
+    }
   }
 
   applyResults() {
@@ -91,17 +105,21 @@ export class ActionsComponent implements OnInit {
     this.calculateDamage(hit);
 
     this.monsters = this.monsters.filter((monster) => !monster.dead)
+
   }
 
   calculateDamage(hit: number) {
-    this.enterTokyo();
+    if (hit == 0) { return };
+    this.enterTokyo()
+
     //if the active monster is in tokyo, it damages everyone else, otherwise it only damages the monster that is in tokyo
     if (this.activeMonster == this.inTokyo) {
       this.damageOthers(hit);
     } else {
       this.inTokyo.hurt(hit)
-      if (this.inTokyo.dead) { this.inTokyo = this.activeMonster } else {
-        // display the message "Monster active, want to leave Tokyo"
+      if (this.inTokyo.dead) {
+        this.inTokyo = this.activeMonster
+      } else {
       }
     }
   }
@@ -130,7 +148,6 @@ export class ActionsComponent implements OnInit {
         this.activeMonster.gainStars(value)
         value = 0;
       }
-
     }
   }
 
@@ -148,10 +165,26 @@ export class ActionsComponent implements OnInit {
   }
 
   enterTokyo() {
-    if (this.inTokyo != undefined) {
-      this.inTokyo.leaveTokyo();
+    if (this.inTokyo == empty) {
+      this.assaultTokyo()
+    } else {
+      this.scapeFromTokyo();
     }
+  }
+
+  scapeFromTokyo() {
+    if (this.inTokyo == this.activeMonster) { return }
+
+    if (confirm(`${this.inTokyo.name}, ¿Aceptas abandonar Tokyo?`
+    ) === true) {
+      this.inTokyo.leaveTokyo();
+      this.assaultTokyo()
+    }
+  }
+
+  assaultTokyo() {
     this.inTokyo = this.activeMonster;
     this.activeMonster.enterTokyo();
   }
+
 }

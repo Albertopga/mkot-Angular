@@ -3,6 +3,6 @@
     Summary display    
     ActionsComponent
 -->
-
-<app-actions [nPlayers]="numMonsters"></app-actions>
-<app-notice></app-notice>
+<app-win *ngIf="win" [winner]="winner"></app-win>
+<app-actions *ngIf="!win" [nPlayers]="numMonsters" (objMonsters)=takeMonsters($event)></app-actions>
+<app-notice *ngIf="!win"></app-notice>

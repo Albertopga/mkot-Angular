@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MonsterComponent } from '../monster/monster.component';
 
 @Component({
   selector: 'app-win',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WinComponent implements OnInit {
 
-  constructor() { }
+  @Input() winner: MonsterComponent
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
