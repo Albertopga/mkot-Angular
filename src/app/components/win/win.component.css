@@ -1,0 +1,19 @@
+div {
+  background: rgba(0, 0, 0, 0.96);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 2fr 3fr 1fr;
+  gap: 15px;
+}
+div h1 {
+  color: white;
+  font-size: 2em;
+  grid-row: 1/2;
+}
+div img {
+  grid-row: 2/3;
+  height: 100%;
+  max-width: 95vw;
+}

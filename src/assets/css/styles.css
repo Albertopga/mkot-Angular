@@ -181,7 +181,8 @@ li img,
 
 /***************************************************/
 /*Components*/
-app-start {
+app-start,
+app-win {
   background: url(../../assets/images/king-of-tokyo.jpg) no-repeat center;
   background-size: cover;
   position: relative;
