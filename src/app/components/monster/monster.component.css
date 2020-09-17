@@ -1,12 +1,12 @@
 section {
   background: rgba(255, 255, 255, 0.7);
   min-height: 125px;
-  max-height: 200px;
-  width: 150px;
+  max-height: 155px;
+  min-width: 100px;
   border-radius: 5px;
   padding: 5px;
+  margin: 5px;
   display: grid;
-  grid-template-rows: 1fr 4fr 3fr;
 }
 
 section h1 {

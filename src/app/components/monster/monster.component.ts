@@ -37,8 +37,7 @@ export class MonsterComponent implements OnInit {
 
   ngOnInit(): void {
     this.name = `Monster ${this.index}`;
-    // this.image = `../../../assets/images/avatares/${this.index}.jpg`;
-    this.image = `../assets/images/avatares/def.png`;
+    this.image = `../../../assets/images/avatares/${this.index}.jpg`;
     this.objMonster.emit({
       monster: this
     });
@@ -82,5 +81,13 @@ export class MonsterComponent implements OnInit {
 
   leaveTokyo() {
     this.inTokyo = false;
+  }
+
+  enterTokyoBay() {
+    this.inTokyoBay = true;
+  }
+
+  leaveTokyoBay() {
+    this.inTokyoBay = false;
   }
 }

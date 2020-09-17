@@ -5,8 +5,8 @@
 }">
     <h1>{{name}}</h1>
     <img src="{{image}}" alt="monsters-avatar">
-    <!-- <img src="../../../assets/images/avatares/tokyoBay.png" alt="tokyo-avatar"> -->
-    <img src="../../../assets/images/avatares/tokyo.png" alt="tokyo-avatar">
+    <img *ngIf="inTokyoBay" src="../../../assets/images/avatares/tokyoBay.png" alt="tokyo-avatar">
+    <img *ngIf="inTokyo" src="../../../assets/images/avatares/tokyo.png" alt="tokyo-avatar">
     <article class="points">
         <img src="../../../assets/images/estrella.png" alt="victory-points">
         <p>{{victory}}</p>

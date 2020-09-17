@@ -2,4 +2,3 @@
     <app-start *ngIf="numPlayers == 0" (goToGame)="selectedPlayers($event)"></app-start>
     <app-board *ngIf="numPlayers > 0" [numMonsters]="numPlayers"></app-board>
 </div>
-<!-- <app-monster></app-monster> -->

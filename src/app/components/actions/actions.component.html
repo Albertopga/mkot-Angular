@@ -6,11 +6,11 @@
 </section>
 
 <section id="actions" class="middle-wrapper">
-    <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'">
-    </app-button>
-
-    <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'"></app-button>
     <!--<app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" ></app-button> -->
+
+    <app-button *ngIf="numberOfRoll < 3" (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'"
+        [text]="'Lanzar'">
+    </app-button>
 
     <ul id="dices">
         <li>
@@ -32,6 +32,8 @@
             <app-dice (objDice)="takeDice($event)"></app-dice>
         </li>
     </ul>
+
+    <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'"></app-button>
 </section>
 <!-- <div *ngIf="notice">
     <app-notice></app-notice>

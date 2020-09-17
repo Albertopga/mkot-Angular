@@ -28,6 +28,7 @@ export class ActionsComponent implements OnInit {
     this.monsters = [];
     this.contMonsters = 0;
     this.notice = false;
+    this.numberOfRoll = 1;
   }
 
   ngOnChanges(): void {
@@ -93,11 +94,7 @@ export class ActionsComponent implements OnInit {
   }
 
   calculateDamage(hit: number) {
-    // if there is no monster in tokyo, the first to hit another moves to tokyo
-    if (this.inTokyo == undefined) {
-      this.inTokyo = this.activeMonster;
-      return;
-    }
+    this.enterTokyo();
     //if the active monster is in tokyo, it damages everyone else, otherwise it only damages the monster that is in tokyo
     if (this.activeMonster == this.inTokyo) {
       this.damageOthers(hit);
@@ -137,7 +134,6 @@ export class ActionsComponent implements OnInit {
     }
   }
 
-
   nextMonster() {
     for (let index = 0; index < this.monsters.length; index++) {
       if (this.monsters[index].activate === true) {
@@ -149,5 +145,13 @@ export class ActionsComponent implements OnInit {
         break
       }
     }
+  }
+
+  enterTokyo() {
+    if (this.inTokyo != undefined) {
+      this.inTokyo.leaveTokyo();
+    }
+    this.inTokyo = this.activeMonster;
+    this.activeMonster.enterTokyo();
   }
 }
