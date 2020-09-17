@@ -76,8 +76,7 @@ export class ActionsComponent implements OnInit {
     this.numberOfRoll = 0;
     this.dices.map((dice) => dice.selected = false)
     this.nextMonster();
-    this.rollDices()
-
+    this.rollDices();
   }
 
   endTurn() {
@@ -87,9 +86,9 @@ export class ActionsComponent implements OnInit {
   }
 
   isWinner() {
-    if (this.monsters.length == 1) {
+    if (this.monsters.length == 1 || this.activeMonster.winner) {
       this.objMonsters.emit({
-        monsters: this.monsters
+        monsters: this.activeMonster
       });
     }
   }
@@ -99,28 +98,27 @@ export class ActionsComponent implements OnInit {
     const energy = this.dices.filter((dice) => dice.result === 5).length;
     const health = this.dices.filter((dice) => dice.result === 6).length;
 
-    this.activeMonster.gainEnergy(energy)
     if (this.activeMonster != this.inTokyo) { this.activeMonster.heal(health) }
+    this.activeMonster.gainEnergy(energy)
     this.calculateStars();
-    this.calculateDamage(hit);
+    this.applyDamageAndEnterTokyo(hit);
 
     this.monsters = this.monsters.filter((monster) => !monster.dead)
 
   }
 
-  calculateDamage(hit: number) {
+  applyDamageAndEnterTokyo(hit: number) {
     if (hit == 0) { return };
-    this.enterTokyo()
+    if (this.inTokyo == empty) { this.assaultTokyo() };
+    this.applyHits(hit);
+    this.setInTokyo();
+  }
 
-    //if the active monster is in tokyo, it damages everyone else, otherwise it only damages the monster that is in tokyo
+  applyHits(hit: number) {
     if (this.activeMonster == this.inTokyo) {
       this.damageOthers(hit);
     } else {
       this.inTokyo.hurt(hit)
-      if (this.inTokyo.dead) {
-        this.inTokyo = this.activeMonster
-      } else {
-      }
     }
   }
 
@@ -131,6 +129,7 @@ export class ActionsComponent implements OnInit {
       }
     })
   }
+
 
   calculateStars() {
     let value = 0;
@@ -157,11 +156,17 @@ export class ActionsComponent implements OnInit {
         this.activeMonster.activate = false;
         if (index == this.monsters.length - 1) { this.activeMonster = this.monsters[0] }
         else { this.activeMonster = this.monsters[index + 1] }
-
         this.activeMonster.activate = true;
         break
       }
     }
+  }
+
+  setInTokyo() {
+    if (this.inTokyo.dead) {
+      this.inTokyo.leaveTokyo()
+    }
+    this.enterTokyo()
   }
 
   enterTokyo() {
@@ -174,6 +179,7 @@ export class ActionsComponent implements OnInit {
 
   scapeFromTokyo() {
     if (this.inTokyo == this.activeMonster) { return }
+    if (this.inTokyo.health <= 0) { this.assaultTokyo(); return }
 
     if (confirm(`${this.inTokyo.name}, ¿Aceptas abandonar Tokyo?`
     ) === true) {
@@ -186,5 +192,4 @@ export class ActionsComponent implements OnInit {
     this.inTokyo = this.activeMonster;
     this.activeMonster.enterTokyo();
   }
-
 }

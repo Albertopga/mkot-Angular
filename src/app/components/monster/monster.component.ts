@@ -44,7 +44,6 @@ export class MonsterComponent implements OnInit {
   }
 
   heal(recovered_health: number) {
-    // it not possible recover more points health than the maxHealth value
     const res = this.health + recovered_health;
     this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
   }

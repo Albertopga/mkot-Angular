@@ -23,10 +23,8 @@ export class BoardComponent implements OnInit {
 
   }
   takeMonsters($event: { monsters: any }) {
-    if ($event.monsters.length == 1) {
-      this.winner = $event.monsters
-      console.log(this.winner)
-      this.win = true
-    }
+    this.winner = $event.monsters;
+    console.log(this.winner)
+    this.win = true
   }
 }
