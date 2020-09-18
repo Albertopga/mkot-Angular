@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+@font-face {
+  font-family: 'GoodGirl';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/src/assets/fonts/GOODGIRL.TTF') format('ttf');
+}
+
 /* Reset */
 big,
 cite,
@@ -59,7 +68,8 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -96,7 +106,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -107,34 +117,21 @@ button:focus {
   outline: none;
 }
 /* End Reset */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
 
-@font-face {
-  font-family: "GoodGirl";
-  font-style: normal;
-  font-weight: normal;
-  src: url("/src/assets/fonts/GOODGIRL.TTF") format("ttf");
-}
 body,
 span,
 a,
 select,
 option,
 button {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 body {
   margin: 0 auto;
-  background: url("../images/mesa.jpg") no-repeat center;
+  background: url('../images/mesa.jpg') no-repeat center;
 }
-h1 {
-  font-family: GoodGirl;
-  font-size: 1em;
-  text-align: center;
-  font-weight: bold;
-  margin: 10px;
-}
+
 img {
   display: block;
   box-sizing: border-box;
@@ -147,48 +144,21 @@ li img,
 .btn:not(:disabled) {
   cursor: pointer;
 }
-#info section,
+/* #info section,
 #resumen,
 #dados img,
 .container,
 #dados {
   border-radius: 5px;
+} */
+h1,
+h2,
+h3 {
+  font-family: GoodGirl;
 }
-
 /***************************************************/
-/*Clases*/
-.oculto {
-  display: none !important;
-}
-.seleccionado {
-  border: 3px solid red;
-}
-.activo {
-  background: #90cf40 !important;
-}
-.eliminado {
-  filter: grayscale(1);
-}
-.resaltar {
-  font-weight: bold;
-  color: red;
-}
-.container {
-  max-height: 100%;
-  background: rgba(199, 199, 199, 0.9);
-  overflow: hidden;
-}
-.container_column {
-  display: flex;
-  flex-flow: column;
-  align-items: stretch;
-  height: 100%;
-}
-.container_row {
-  display: flex;
-  flex-flow: row;
-  align-items: stretch;
-}
+/*Classes*/
+
 .btn {
   background: white;
   border: 2px solid #c7c7c7;
@@ -200,309 +170,62 @@ li img,
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0px auto 15px;
 }
+
 .btn:hover {
   border: 2px solid #90cf40;
   background: rgba(0, 0, 0, 0.5);
   color: white;
 }
-.icon {
-  width: 18px;
-  height: 16px;
-  display: inline-block;
-  position: relative;
-  margin-right: 0.25em;
-  font-size: 1.5rem;
-}
-.roll-icon {
-  background: url("../images/icons/dice-icon-mini.png") no-repeat center;
-  background-size: 100%;
-}
-.end-icon {
-  background: url("../images/icons/next.png") no-repeat center;
-  background-size: 100%;
-}
-.exit-icon {
-  background: url("../images/icons/exitR.png") no-repeat center;
-  background-size: 100%;
-}
-.tokyo {
-  width: 50%;
-  max-width: 150px;
-  position: absolute;
+
+.highlight {
+  background: #90cf40;
 }
 
-/*****************************************************/
-/*Altura de pantalla superior a 600px*/
-/**Pantalla de inicio y ganador **/
-#comenzar {
+/***************************************************/
+/*Components*/
+app-start,
+app-win {
+  background: url(../../assets/images/king-of-tokyo.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
   width: 100%;
+  height: 98vh;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 50px 50px 50px 1fr;
+  text-align: center;
 }
-#comenzar,
-#mesa {
-  position: relative;
+
+app-board {
   height: 98vh;
   width: 100%;
   max-width: 1024px;
-  margin: 0 auto;
-}
-#comenzar,
-#ganador {
-  background: url("../images/king-of-tokyo.jpg") no-repeat center;
-  background-size: cover;
-}
-option {
-  background: white;
-  color: black;
-}
-option:disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-#comenzar a {
-  text-decoration: none;
-  padding-top: 10px;
-  grid-column: 1;
-  grid-row: 4;
-}
-#nJugadores {
-  grid-column: 1;
-  grid-row: 2;
-}
-#jugar {
-  grid-column: 1;
-  grid-row: 3;
-}
-#ganador {
-  grid-column: 1/4;
-  grid-row: 1/6;
-  z-index: 10;
-}
-#ganador section {
-  background: rgba(0, 0, 0, 0.96);
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 2fr 3fr 1fr;
-}
-#ganador section h1 {
-  color: white;
-  font-size: 2em;
-  grid-row: 1/2;
-}
-#ganador section img {
-  grid-row: 2/3;
-  height: 100%;
-  max-width: 95vw;
-}
-#ganador section .btn {
-  grid-row: 3/4;
-  margin-top: 20px;
-}
-#jugar:disabled {
-  color: rgba(0, 0, 0, 0.5);
-  background-color: rgba(198, 198, 198, 0.84);
-  border-color: rgba(199, 199, 199, 0.5);
-}
-/*****************************************************/
-/* Distribución en la #mesa de los elementos (#dados, #acciones, #tablero, #info, #resumenTurno) */
-#mesa {
   padding: 10px;
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  grid-template-rows: 29px 100px 3fr minmax(110px, 1fr);
-  box-sizing: border-box;
-}
-#dados {
-  grid-column: 1/2;
-  grid-row: 4/5;
-  background: #146b14;
-  /*background: #285e71;*/
-  width: 100%;
-  max-width: 450px;
-  margin: 10px auto 0;
-  box-sizing: border-box;
-}
-#acciones {
-  grid-column: 1/2;
-  grid-row: 4;
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-  max-width: 450px;
-  margin: 10px auto;
-  justify-content: space-between;
-}
-#tablero {
   position: relative;
-  grid-column: 1/2;
-  grid-row: 3/4;
-  background: url("../images/tablero.jpg") no-repeat top center;
-  background-size: contain;
-  margin-top: 10px;
-}
-#info {
-  grid-column: 2/3;
-  grid-row: 2/6;
-  display: flex;
-  flex-flow: column;
-  margin-left: 10px;  
-}
-#resumenTurno {
-  grid-column: 1/2;
-  grid-row: 2/3;
-}
-
-/*****************************************************/
-/*sección dados*/
-#dados img {
-  width: 90%;
-  max-width: 45px;
-}
-#dados ul {
-  margin: 5px auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-/*****************************************************/
-/*sección acciones y botón salir*/
-#acciones .btn:not(#salir) {
-  width: 50%;
-  margin: 0 5px;
-}
-#salir {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 50px;
-  height: 25px;
-  min-width: 50px;
-  font-size: 0;
-}
-/*****************************************************/
-/*sección info*/
-#info section {
-  margin: 3px;
-  background: rgba(255, 255, 255, 0.7);
-  min-height: 125px;
-}
-#info section h1 {
-  margin: 10px 0 5px 0;
-}
-#info img {
-  max-width: 8vh;
-}
-#info .datos {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  width: 80px;
   margin: 0 auto;
-}
-#info .datos img {
-  width: 25px;
-}
-#info .datos img:nth-of-type(1) {
-  grid-column: 1/2;
-  grid-row: 1/2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(425px, 1fr) 100px;
+  box-sizing: border-box;
 }
 
-#info .datos img:nth-of-type(2) {
-  grid-column: 2/3;
-  grid-row: 1/2;
-}
-#info .datos img:nth-of-type(3) {
-  grid-column: 3/4;
-  grid-row: 1/2;
+app-actions {
+  grid-column: 1;
+  grid-row: 1/3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 29px 2fr 1fr 2fr 1fr;
 }
 
-/*****************************************************/
-/*sección resumenTurno*/
-
-#resumenTurno p {
-  margin: 1em;
-}
-#resumen {
+app-notice {
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.7);
-  margin: 5px;
   height: 90%;
   overflow-y: scroll;
   padding: 10px;
+  grid-row: 4/6;
+  grid-column: 4;
 }
-
-@media (min-width: 900px) {
-  #mesa {
-    grid-template-columns: 1fr minmax(150px, 250px) 120px;
-    grid-template-rows: 30px 6fr 3fr 1fr;
-    /*30px 210px minmax(90px, 390px) 50px;
-    */
-  }
-  #dados {
-    grid-column: 2/3;
-    grid-row: 2/5;
-    width: 100%;
-    margin-top: 0;
-    position: relative;
-  }
-  #dados ul {
-    position: absolute;
-    bottom: 50px;
-    flex-wrap: wrap;
-  }
-  #dados li {
-    width: 26%;
-    margin-bottom: 10px;
-    z-index: 2;
-  }
-  /*
-  #dados tr {
-    display: flex;
-    flex-flow: column;
-  }
-  #dados td {
-    margin-top: 5px;
-  }*/
-  #acciones {
-    grid-column: 2/3;
-    grid-row: 4/4;
-    flex-flow: row;
-    justify-content: space-evenly;
-    width: 100%;
-    z-index: 1;
-  }
-  #tablero {
-    grid-column: 1/2;
-    grid-row: 2/4;
-    min-width: 300px;
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  #info {
-    grid-column: 3/4;
-    grid-row: 2/5;
-  }
-  #resumenTurno {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    z-index: 1;
-  }
-  #resumen {
-    height: 95%;
-  }
-  article.container {
-    background: none;
-  }
-}
-
-/*@media (min-width: 700px) and (orientation: landscape) { ... }*/
-/*@media (min-width: 700px) and (max-heigth: 400px) { ... }*/
-/*  sustituir and por una , */

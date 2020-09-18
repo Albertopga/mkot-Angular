@@ -1,0 +1,65 @@
+section {
+  background: rgba(255, 255, 255, 0.7);
+  min-height: 125px;
+  max-height: 170px;
+  min-width: 100px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  display: grid;
+}
+
+section h1 {
+  font-family: GoodGirl;
+  font-size: 1em;
+  text-align: center;
+  margin: 10px;
+}
+
+section p {
+  font-family: GoodGirl;
+}
+
+section img {
+  width: 75px;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.points {
+  grid-row: 3;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.points img {
+  width: 25px;
+}
+
+.points img:nth-of-type(1) {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.points img:nth-of-type(2) {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.points img:nth-of-type(3) {
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+
+.active {
+  background: #90cf40 !important;
+}
+
+.eliminated {
+  filter: grayscale(1);
+}

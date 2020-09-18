@@ -11,15 +11,17 @@ export class DiceComponent implements OnInit {
   image: string;
   result: number;
   selected: boolean;
+  @Input() extra: boolean;
 
   @Output() objDice = new EventEmitter();
 
   constructor() {
-    this.roll();
-    this.selected = false;
+
   }
 
   ngOnInit(): void {
+    this.roll();
+    this.selected = false;
     this.objDice.emit({
       dice: this
     });
@@ -36,6 +38,7 @@ export class DiceComponent implements OnInit {
     }
   }
 
+
   select() {
     this.selected = !this.selected
   }
@@ -43,17 +46,23 @@ export class DiceComponent implements OnInit {
   private setDiceImage(resultado) {
     switch (resultado) {
       case 1:
-        return "/../assets/images/dices/dice1.jpg";
+        return !this.extra ? "/../assets/images/dices/dice1.jpg" :
+          "/../assets/images/dices/extdice1.jpg";
       case 2:
-        return "/../assets/images/dices/dice2.jpg";
+        return !this.extra ? "/../assets/images/dices/dice2.jpg" :
+          "/../assets/images/dices/extdice2.jpg";
       case 3:
-        return "/../assets/images/dices/dice3.jpg";
+        return !this.extra ? "/../assets/images/dices/dice3.jpg" :
+          "/../assets/images/dices/extdice3.jpg";
       case 4:
-        return "/../assets/images/dices/diceAttack.jpg";
+        return !this.extra ? "/../assets/images/dices/diceAttack.jpg" :
+          "/../assets/images/dices/extdiceAttack.jpg";
       case 5:
-        return "/../assets/images/dices/diceEnergy.jpg";
+        return !this.extra ? "/../assets/images/dices/diceEnergy.jpg" :
+          "/../assets/images/dices/extdiceEnergy.jpg";
       case 6:
-        return "/../assets/images/dices/diceHealth.jpg";
+        return !this.extra ? "/../assets/images/dices/diceHealth.jpg" :
+          "/../assets/images/dices/extdiceHealth.jpg";
       default:
         return "";
     }

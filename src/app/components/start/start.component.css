@@ -1,0 +1,17 @@
+section.start {
+  grid-column: 1;
+  grid-row: 2;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 50px 50px 50px 1fr;
+  gap: 15px;
+}
+
+a.btn {
+  text-decoration: none;
+  padding-top: 10px;
+  display: block;
+  grid-row: 1;
+  margin: 0 auto;
+}

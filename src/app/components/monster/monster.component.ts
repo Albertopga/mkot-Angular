@@ -17,19 +17,22 @@ export class MonsterComponent implements OnInit {
   victory: number;
   activate: boolean;
   inTokyo: boolean;
+  inTokyoBay: boolean;
   dead: boolean;
   winner: boolean;
 
   constructor() {
-    this.name = "Monster default ";
+    this.name = "Monster default";
     this.image = Globals.imgDefault;
-    this.health = 10;
+    this.health = Globals.maxHealth;
     this.energy = 0;
     this.victory = 0;
     this.activate = false;
-    this.inTokyo = false;
     this.dead = false;
     this.winner = false;
+    this.inTokyo = false;
+    this.inTokyoBay = false;
+
   }
 
   ngOnInit(): void {
@@ -41,10 +44,6 @@ export class MonsterComponent implements OnInit {
   }
 
   heal(recovered_health: number) {
-    // If the monsters are in Tokyo, they can't be cured
-    if (this.inTokyo) { return false } // provisional return
-
-    // it not possible recover more points health than the maxHealth value
     const res = this.health + recovered_health;
     this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
   }
@@ -66,7 +65,7 @@ export class MonsterComponent implements OnInit {
   }
 
   gainEnergy(energy: number) {
-    this.victory += energy
+    this.energy += energy
   }
 
   // when I implement the cards, make sure this function does what I expect
@@ -81,5 +80,13 @@ export class MonsterComponent implements OnInit {
 
   leaveTokyo() {
     this.inTokyo = false;
+  }
+
+  enterTokyoBay() {
+    this.inTokyoBay = true;
+  }
+
+  leaveTokyoBay() {
+    this.inTokyoBay = false;
   }
 }
