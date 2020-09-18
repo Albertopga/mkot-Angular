@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-notice',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoticeComponent implements OnInit {
 
-  constructor() { }
+  @Input() messages: [];
+  constructor() { this.messages = []; }
 
   ngOnInit(): void {
   }

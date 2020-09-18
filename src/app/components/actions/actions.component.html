@@ -27,7 +27,14 @@
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>
         </li>
+        <li *ngIf="extra1">
+            <app-dice [extra]=true (objDice)="takeDice($event)"></app-dice>
+        </li>
+        <li *ngIf="extra2">
+            <app-dice [extra]=true (objDice)="takeDice($event)"></app-dice>
+        </li>
     </ul>
     <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'">
     </app-button>
 </section>
+<!-- <app-notice [messages]="messages"></app-notice> -->

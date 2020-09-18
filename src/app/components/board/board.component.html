@@ -1,4 +1,3 @@
 <app-win *ngIf="win" [winner]="winner" (back)="takeBack($event)"></app-win>
 <app-actions *ngIf="!win" [nPlayers]="numMonsters" (objMonsters)=takeMonsters($event) (back)="takeBack($event)">
 </app-actions>
-<app-notice *ngIf="!win"></app-notice>
