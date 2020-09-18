@@ -1,4 +1,4 @@
-# mkot-Angular
+# mkot-Angular v0.1
 
 pass board game KoT to game in web client, with Angular framework
 
