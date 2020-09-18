@@ -1,8 +1,4 @@
-<!-- 
-    Tokyo Board
-    Summary display    
-    ActionsComponent
--->
-<app-win *ngIf="win" [winner]="winner"></app-win>
-<app-actions *ngIf="!win" [nPlayers]="numMonsters" (objMonsters)=takeMonsters($event)></app-actions>
+<app-win *ngIf="win" [winner]="winner" (back)="takeBack($event)"></app-win>
+<app-actions *ngIf="!win" [nPlayers]="numMonsters" (objMonsters)=takeMonsters($event) (back)="takeBack($event)">
+</app-actions>
 <app-notice *ngIf="!win"></app-notice>

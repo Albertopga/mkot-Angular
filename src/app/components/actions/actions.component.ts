@@ -13,6 +13,7 @@ export class ActionsComponent implements OnInit {
 
   @Input() nPlayers: number;
   @Output() objMonsters = new EventEmitter();
+  @Output() back = new EventEmitter();
 
   numMonsters: number[];
   monsters: MonsterComponent[];
@@ -191,5 +192,11 @@ export class ActionsComponent implements OnInit {
   assaultTokyo() {
     this.inTokyo = this.activeMonster;
     this.activeMonster.enterTokyo();
+  }
+
+  sendBack(): void {
+    this.back.emit({
+      back: true
+    })
   }
 }

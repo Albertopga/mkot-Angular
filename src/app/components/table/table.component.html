@@ -1,5 +1,4 @@
 <div [ngClass]="{'start': numPlayers == 0, '': numPlayers > 0}">
     <app-start *ngIf="numPlayers == 0" (goToGame)="selectedPlayers($event)"></app-start>
-    <app-board *ngIf="numPlayers > 0" [numMonsters]="numPlayers"></app-board>
+    <app-board *ngIf="numPlayers > 0" [numMonsters]="numPlayers" (moreBack)="takeBack($event)"></app-board>
 </div>
-<!-- <app-win></app-win> -->

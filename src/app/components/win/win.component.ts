@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MonsterComponent } from '../monster/monster.component';
 
 @Component({
@@ -9,6 +9,7 @@ import { MonsterComponent } from '../monster/monster.component';
 export class WinComponent implements OnInit {
 
   @Input() winner: MonsterComponent
+  @Output() back = new EventEmitter();
 
   constructor() {
   }
@@ -16,4 +17,9 @@ export class WinComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendBack(): void {
+    this.back.emit({
+      back: true
+    })
+  }
 }

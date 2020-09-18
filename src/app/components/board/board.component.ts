@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MonsterComponent } from '../monster/monster.component';
-import { empty } from 'rxjs';
+
 
 @Component({
   selector: 'app-board',
@@ -11,9 +11,11 @@ export class BoardComponent implements OnInit {
 
   @Input() numMonsters: number;
   @Input() winner: MonsterComponent;
+  @Output() moreBack = new EventEmitter();
 
   componente: string
   win: boolean;
+  back: boolean;
 
   constructor() {
     this.win = false;
@@ -24,7 +26,11 @@ export class BoardComponent implements OnInit {
   }
   takeMonsters($event: { monsters: any }) {
     this.winner = $event.monsters;
-    console.log(this.winner)
     this.win = true
+  }
+
+  takeBack($event: any) {
+    this.back = $event.back;
+    this.moreBack.emit(this.back)
   }
 }
