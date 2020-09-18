@@ -1,25 +1,13 @@
-<!--
-    DiceComponent[]
-    btn. tirar
-    btn. finalizar
-    btn. salir
- -->
-<section id="info">
-    <div class="container container_column">
-        <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
-        </app-monster>
-    </div>
+<section id="info" class="container container_column">
+    <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
+    </app-monster>
 </section>
 
 <section id="actions" class="middle-wrapper">
-    <div>
-        <app-button (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'" [text]="'Lanzar'">
-        </app-button>
-    </div>
-
-    <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'"></app-button>
-    <!--<app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" ></app-button> -->
-
+    <app-button [id]="'exit'" [spanClass]="'exit-icon icon'" [text]="'Salir'" (click)="sendBack()"></app-button>
+    <app-button *ngIf="numberOfRoll < 3" (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'"
+        [text]="'Lanzar'">
+    </app-button>
     <ul id="dices">
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>
@@ -39,8 +27,14 @@
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>
         </li>
+        <li *ngIf="extra1">
+            <app-dice [extra]=true (objDice)="takeDice($event)"></app-dice>
+        </li>
+        <li *ngIf="extra2">
+            <app-dice [extra]=true (objDice)="takeDice($event)"></app-dice>
+        </li>
     </ul>
+    <app-button (click)="endTurn()" [id]="'endTurn'" [spanClass]="'end-icon icon'" [text]="'Finalizar'">
+    </app-button>
 </section>
-<div *ngIf="notice">
-    <app-notice></app-notice>
-</div>
+<!-- <app-notice [messages]="messages"></app-notice> -->

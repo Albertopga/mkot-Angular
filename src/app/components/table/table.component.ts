@@ -22,4 +22,8 @@ export class TableComponent implements OnInit {
     this.numPlayers = numPlayersSelected
   }
 
+  takeBack($event: any) {
+    this.numPlayers = 0;
+  }
+
 }

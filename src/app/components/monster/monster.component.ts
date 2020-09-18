@@ -17,6 +17,7 @@ export class MonsterComponent implements OnInit {
   victory: number;
   activate: boolean;
   inTokyo: boolean;
+  inTokyoBay: boolean;
   dead: boolean;
   winner: boolean;
 
@@ -29,6 +30,9 @@ export class MonsterComponent implements OnInit {
     this.activate = false;
     this.dead = false;
     this.winner = false;
+    this.inTokyo = false;
+    this.inTokyoBay = false;
+
   }
 
   ngOnInit(): void {
@@ -40,7 +44,6 @@ export class MonsterComponent implements OnInit {
   }
 
   heal(recovered_health: number) {
-    // it not possible recover more points health than the maxHealth value
     const res = this.health + recovered_health;
     this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
   }
@@ -77,5 +80,13 @@ export class MonsterComponent implements OnInit {
 
   leaveTokyo() {
     this.inTokyo = false;
+  }
+
+  enterTokyoBay() {
+    this.inTokyoBay = true;
+  }
+
+  leaveTokyoBay() {
+    this.inTokyoBay = false;
   }
 }
