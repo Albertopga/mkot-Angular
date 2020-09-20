@@ -5,9 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
 export class TableComponent implements OnInit {
-
-
 
   @Input() numPlayers: number;
 
