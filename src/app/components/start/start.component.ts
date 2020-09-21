@@ -7,31 +7,16 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  nPlayers: number;
-  arrCrateNames: [number]
   @Output() goToGame = new EventEmitter();
-
+  numberOfPlayers: number;
 
   constructor() {
-    this.nPlayers = 0;
+    this.numberOfPlayers = 0;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   toGame() {
-    this.goToGame.emit(this.nPlayers)
+    this.goToGame.emit(this.numberOfPlayers);
   }
-
-  crateInputs() {
-    for (let i = 0; i < this.nPlayers; i++) {
-      this.arrCrateNames.push(i);
-    }
-  }
-
-  takeData() {
-
-  }
-
-
 }

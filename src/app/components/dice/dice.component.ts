@@ -8,20 +8,18 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 })
 export class DiceComponent implements OnInit {
 
+  @Input() extra: boolean;
+  @Output() objDice = new EventEmitter();
+
   image: string;
   result: number;
   selected: boolean;
-  @Input() extra: boolean;
 
-  @Output() objDice = new EventEmitter();
 
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
     this.roll();
-    this.selected = false;
     this.objDice.emit({
       dice: this
     });
@@ -30,21 +28,16 @@ export class DiceComponent implements OnInit {
   ngOnChanges() {
   }
 
-
   roll() {
     if (!this.selected) {
       this.result = Math.floor(Math.random() * 6) + 1;
-      this.image = this.setDiceImage(this.result);
+      this.image = this.setDiceImage();
     }
   }
 
+  private setDiceImage() {
 
-  select() {
-    this.selected = !this.selected
-  }
-
-  private setDiceImage(resultado) {
-    switch (resultado) {
+    switch (this.result) {
       case 1:
         return !this.extra ? "/../assets/images/dices/dice1.jpg" :
           "/../assets/images/dices/extdice1.jpg";
@@ -67,4 +60,13 @@ export class DiceComponent implements OnInit {
         return "";
     }
   }
+
+  selectUnselect() {
+    this.selected = !this.selected
+  }
+
+  unselect() {
+    this.selected = false;
+  }
+
 }

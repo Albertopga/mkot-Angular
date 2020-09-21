@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NoticeComponent implements OnInit {
 
   @Input() messages: [];
+
   constructor() { this.messages = []; }
 
   ngOnInit(): void {
