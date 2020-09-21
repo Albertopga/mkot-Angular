@@ -11,17 +11,15 @@ import { empty } from 'rxjs';
 })
 export class ActionsComponent implements OnInit {
 
-  @Input() nPlayers: number;
+  @Input() numberOfMonsters: any;
   @Output() objMonsters = new EventEmitter();
   @Output() back = new EventEmitter();
 
-  numMonsters: number[];
+  toCreateMonstersComponent: number[];
   monsters: MonsterComponent[];
   dices: DiceComponent[];
-  roll: boolean;
   numberOfRoll: number;
   activeMonster: MonsterComponent;
-  contMonsters: number;
   inTokyo: any;
   notice: boolean;
   messages: string[];
@@ -29,11 +27,8 @@ export class ActionsComponent implements OnInit {
   extra2: boolean;
 
   constructor() {
-    this.roll = false;
     this.dices = [];
-    this.numMonsters = [];
     this.monsters = [];
-    this.contMonsters = 0;
     this.notice = false;
     this.numberOfRoll = 1;
     this.inTokyo = empty;
@@ -42,24 +37,20 @@ export class ActionsComponent implements OnInit {
     this.extra2 = false;
   }
 
-  ngOnChanges(): void {
-
-  }
-
   ngOnInit(): void {
-    this.createMonsters();
+    this.toCreateMonstersComponent = new Array(parseInt(this.numberOfMonsters));
   }
 
-  createMonsters() {
-    for (let i = 1; i <= this.nPlayers; i++) {
-      this.numMonsters.push(i)
-    }
+  takeMonstersSetFirst($event: { monster: MonsterComponent }) {
+    const tempMonster = $event.monster;
+    this.monsters.push(tempMonster);
+
+    if (this.monsters.length == 1) { this.setFirst() }
   }
 
-  takeMonster($event: { monster: MonsterComponent }) {
-    if (this.contMonsters == 0) { $event.monster.activate = true, this.activeMonster = $event.monster }
-    this.monsters.push($event.monster);
-    this.contMonsters++;
+  setFirst() {
+    this.activeMonster = this.monsters[0];
+    this.activeMonster.activate();
   }
 
   takeDice($event: { dice: DiceComponent; }) {
@@ -68,28 +59,21 @@ export class ActionsComponent implements OnInit {
 
   rollDices() {
     this.numberOfRoll++;
-
-    for (const dice of this.dices) {
-      dice.roll()
-    }
-
+    this.dices.map((dice) => dice.roll())
   }
 
   newTurn() {
     this.numberOfRoll = 0;
-    this.dices.map((dice) => dice.selected = false)
+    this.dices.map((dice) => dice.unselect())
     this.nextMonster();
-    this.log(` `)
-    this.log(`Turno de ${this.activeMonster.name}`)
-    this.log(` `)
     this.continueInTokyo();
     this.rollDices();
   }
 
   continueInTokyo() {
-    if (this.activeMonster == this.inTokyo) {
+    if (this.activeMonster.inTokyo) {
       this.activeMonster.gainStars(2);
-      this.log(`gana 2 estrellas por mantenerse en Tokyo`)
+      this.activeMonster.isWinner();
     }
   }
 
@@ -102,9 +86,7 @@ export class ActionsComponent implements OnInit {
 
   isWinner() {
     if (this.monsters.length == 1 || this.activeMonster.winner) {
-      this.objMonsters.emit({
-        monsters: this.activeMonster
-      });
+      this.objMonsters.emit({ monsters: this.activeMonster });
     }
   }
 
@@ -113,74 +95,80 @@ export class ActionsComponent implements OnInit {
     const energy = this.dices.filter((dice) => dice.result === 5).length;
     const health = this.dices.filter((dice) => dice.result === 6).length;
 
-    if (this.activeMonster != this.inTokyo) {
-      this.activeMonster.heal(health);
-      this.log(`recupera salud`);
-    }
-
+    this.activeMonster.heal(health);
     this.activeMonster.gainEnergy(energy)
-    this.log(`gana ${energy} de energía`)
-    this.calculateStars();
+    this.gainStars();
     this.applyDamageAndEnterTokyo(hit);
+    this.removeEliminatedMonsters()
+  }
 
+  removeEliminatedMonsters() {
     this.monsters = this.monsters.filter((monster) => !monster.dead)
-
   }
 
   applyDamageAndEnterTokyo(hit: number) {
     if (hit == 0) { return };
-    if (this.inTokyo == empty) { this.assaultTokyo() };
+    if (this.inTokyo == empty) { this.assaultTokyo(); return };
+
     this.applyHits(hit);
     this.setInTokyo();
   }
 
   applyHits(hit: number) {
-    if (this.activeMonster == this.inTokyo) {
+    if (this.activeMonster.inTokyo) {
       this.damageOthers(hit);
     } else {
       this.inTokyo.hurt(hit)
-      this.log(`pierde ${hit} punto/s de vida`)
     }
   }
 
   damageOthers(hit: number) {
     this.monsters.map((monster) => {
-      if (monster.name != this.inTokyo.name) {
-        monster.hurt(hit)
-        this.log(`${monster.name}, pierde ${hit} punto/s de vida`)
-      }
+      if (!monster.inTokyo) { monster.hurt(hit) }
     })
   }
 
-  calculateStars() {
-    let value = 0;
-    for (let i = 1; i <= 3; i++) {
-      const equalNumbers = this.dices.filter((dice) => dice.result === i).length;
+  gainStars() {
+    for (let value = 1; value <= 3; value++) {
+      const equalNumbers = this.dices.filter((dice) => dice.result === value).length;
+      const starsCalculated = this.calculateStars(equalNumbers, value);
 
-      if (equalNumbers >= 3) {
-        value = i;
-        if (equalNumbers - 3 > 0) {
-          value = value + (equalNumbers - 3);
-        }
+      this.activeMonster.gainStars(starsCalculated)
+    }
+
+    this.activeMonster.isWinner();
+  }
+
+  calculateStars(equalNumbers: number, value: number): number {
+    let starsToAdd = 0;
+
+    if (equalNumbers >= 3) {
+      starsToAdd = value;
+      if (equalNumbers - 3 > 0) {
+        starsToAdd = starsToAdd + (equalNumbers - 3);
       }
+    }
+    return starsToAdd
+  }
 
-      if (value > 0) {
-        this.activeMonster.gainStars(value)
-        this.log(`gana ${value} estrella/s`)
-        value = 0;
+  nextMonster() {
+    let lastPosition = this.monsters.length - 1;
+
+    for (let index = 0; index < this.monsters.length; index++) {
+      if (this.monsters[index].isActivate) {
+        this.activeMonster.deActivate();
+        this.assignActivemonster(index, lastPosition);
+        this.activeMonster.activate();
+        break
       }
     }
   }
 
-  nextMonster() {
-    for (let index = 0; index < this.monsters.length; index++) {
-      if (this.monsters[index].activate === true) {
-        this.activeMonster.activate = false;
-        if (index == this.monsters.length - 1) { this.activeMonster = this.monsters[0] }
-        else { this.activeMonster = this.monsters[index + 1] }
-        this.activeMonster.activate = true;
-        break
-      }
+  assignActivemonster(index: number, lastPosition: number) {
+    if (index == lastPosition) {
+      this.activeMonster = this.monsters[0]
+    } else {
+      this.activeMonster = this.monsters[index + 1]
     }
   }
 
@@ -216,6 +204,7 @@ export class ActionsComponent implements OnInit {
     this.activeMonster.enterTokyo();
     this.log(`${this.activeMonster.name}, Entra en Tokyo y gana 1 estrella`)
     this.activeMonster.gainStars(1);
+    this.activeMonster.isWinner();
   }
 
   sendBack(): void {

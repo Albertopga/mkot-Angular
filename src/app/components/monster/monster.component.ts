@@ -16,7 +16,7 @@ export class MonsterComponent implements OnInit {
   health: number;
   energy: number;
   victory: number;
-  activate: boolean;
+  isActivate: boolean;
   inTokyo: boolean;
   inTokyoBay: boolean;
   dead: boolean;
@@ -28,7 +28,7 @@ export class MonsterComponent implements OnInit {
     this.health = Globals.maxHealth;
     this.energy = 0;
     this.victory = 0;
-    this.activate = false;
+    this.isActivate = false;
     this.dead = false;
     this.winner = false;
     this.inTokyo = false;
@@ -46,6 +46,7 @@ export class MonsterComponent implements OnInit {
 
   heal(pointsWin: number) {
     if (this.inTokyo || this.inTokyoBay) { return }
+
     const resultingHealth = this.health + pointsWin;
     this.health = resultingHealth <= Globals.maxHealth ? resultingHealth : Globals.maxHealth;
   }
@@ -53,6 +54,7 @@ export class MonsterComponent implements OnInit {
   hurt(pointsLost: number) {
     const resultingHealth = this.health - pointsLost;
     this.health = resultingHealth > 0 ? resultingHealth : 0;
+    this.isDead();
   }
 
   isDead() {
@@ -96,7 +98,11 @@ export class MonsterComponent implements OnInit {
     this.inTokyoBay = false;
   }
 
-  activateDeactivate() {
-    this.activate = !this.activate
+  activate() {
+    this.isActivate = true;
+  }
+
+  deActivate() {
+    this.isActivate = false;
   }
 }

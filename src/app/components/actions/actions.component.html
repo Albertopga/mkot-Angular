@@ -9,6 +9,7 @@
     <app-button *ngIf="numberOfRoll < 3" (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'"
         [text]="'Lanzar'">
     </app-button>
+
     <ul id="dices">
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>
