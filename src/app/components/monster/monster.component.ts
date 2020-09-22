@@ -60,6 +60,7 @@ export class MonsterComponent implements OnInit {
   isDead() {
     if (this.health <= 0) {
       this.dead = true;
+      this.inTokyo = false;
     }
   }
 
