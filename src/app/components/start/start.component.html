@@ -1,17 +1,15 @@
 <section class="start">
     <form (ngSubmit)="toGame()">
-        <select class="btn" name="nPlayers" [(ngModel)]="nPlayers" ng-init="nPlayers='0'">
+        <select class="btn" name="numberOfPlayers" [(ngModel)]="numberOfPlayers" ng-init="numberOfPlayers ='0'">
             <option disabled value="0">Número de jugadores</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
         </select>
 
-        <section *ngIf="nPlayers > 0">
+        <section *ngIf="numberOfPlayers > 0">
             <button type="submit" class="btn highlight">Jugar</button>
         </section>
-
     </form>
-
     <a class="btn" href="https://www.youtube.com/watch?v=VKcXITTE144" target="_blank">Cómo Jugar</a>
 </section>

@@ -5,25 +5,24 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
 export class TableComponent implements OnInit {
 
-
-
-  @Input() numPlayers: number;
+  @Input() numberOfPlayers: number;
 
   constructor() {
-    this.numPlayers = 0;
+    this.numberOfPlayers = 0;
   }
 
   ngOnInit(): void {
   }
 
-  selectedPlayers(numPlayersSelected) {
-    this.numPlayers = numPlayersSelected
+  selectedPlayers(numberOfPlayersSelected: number) {
+    this.numberOfPlayers = numberOfPlayersSelected;
   }
 
   takeBack($event: any) {
-    this.numPlayers = 0;
+    this.numberOfPlayers = 0;
   }
 
 }

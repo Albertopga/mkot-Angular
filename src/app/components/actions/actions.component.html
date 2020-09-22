@@ -1,5 +1,6 @@
 <section id="info" class="container container_column">
-    <app-monster *ngFor="let monster of numMonsters, let i" [index]="i" (objMonster)=takeMonster($event)>
+    <app-monster *ngFor="let component of toCreateMonstersComponent, let i = index" [index]="i+1"
+        (objMonster)=takeMonstersSetFirst($event)>
     </app-monster>
 </section>
 
@@ -8,6 +9,7 @@
     <app-button *ngIf="numberOfRoll < 3" (click)="rollDices()" [id]="'roll'" [spanClass]="'roll-icon icon'"
         [text]="'Lanzar'">
     </app-button>
+
     <ul id="dices">
         <li>
             <app-dice (objDice)="takeDice($event)"></app-dice>

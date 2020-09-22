@@ -1,5 +1,6 @@
 export const Globals = {
-    maxHealth: 10,
+    maxHealth: 5,
     victory: 20,
-    imgDefault: "./assets/images/avatares/def.png"
+    imageDefault: "./assets/images/avatares/def.png",
+    imagePath: "./assets/images/avatares/"
 } 

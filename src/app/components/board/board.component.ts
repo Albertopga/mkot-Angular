@@ -9,16 +9,16 @@ import { MonsterComponent } from '../monster/monster.component';
 })
 export class BoardComponent implements OnInit {
 
-  @Input() numMonsters: number;
+  @Input() numberOfMonsters: number;
   @Input() winner: MonsterComponent;
   @Output() moreBack = new EventEmitter();
 
   componente: string
-  win: boolean;
+  isWinner: boolean;
   back: boolean;
 
   constructor() {
-    this.win = false;
+    this.isWinner = false;
   }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   }
   takeMonsters($event: { monsters: any }) {
     this.winner = $event.monsters;
-    this.win = true
+    this.isWinner = true
   }
 
   takeBack($event: any) {

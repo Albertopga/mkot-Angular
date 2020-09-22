@@ -10,12 +10,13 @@ export class MonsterComponent implements OnInit {
 
   @Output() objMonster = new EventEmitter();
   @Input() index: number
+
   name: string;
   image: string;
   health: number;
   energy: number;
   victory: number;
-  activate: boolean;
+  isActivate: boolean;
   inTokyo: boolean;
   inTokyoBay: boolean;
   dead: boolean;
@@ -23,40 +24,54 @@ export class MonsterComponent implements OnInit {
 
   constructor() {
     this.name = "Monster default";
-    this.image = Globals.imgDefault;
+    this.image = Globals.imagePath
     this.health = Globals.maxHealth;
     this.energy = 0;
     this.victory = 0;
-    this.activate = false;
+    this.isActivate = false;
     this.dead = false;
     this.winner = false;
     this.inTokyo = false;
     this.inTokyoBay = false;
-
   }
 
   ngOnInit(): void {
     this.name = `Monster ${this.index}`;
-    this.image = `../../../assets/images/avatares/${this.index}.jpg`;
+    this.image += this.index + ".jpg";
+
     this.objMonster.emit({
       monster: this
     });
   }
 
-  heal(recovered_health: number) {
-    const res = this.health + recovered_health;
-    this.health = res <= Globals.maxHealth ? res : Globals.maxHealth;
+  heal(pointsWin: number) {
+    if (this.inTokyo || this.inTokyoBay) { return }
+
+    const resultingHealth = this.health + pointsWin;
+    this.health = resultingHealth <= Globals.maxHealth ? resultingHealth : Globals.maxHealth;
   }
 
-  hurt(lost_health: number) {
-    const res = this.health - lost_health;
-    this.health = res > 0 ? res : 0;
-    if (this.health <= 0) { this.dead = true; }
+  hurt(pointsLost: number) {
+    const resultingHealth = this.health - pointsLost;
+    this.health = resultingHealth > 0 ? resultingHealth : 0;
+    this.isDead();
+  }
+
+  isDead() {
+    if (this.health <= 0) {
+      this.dead = true;
+      this.inTokyo = false;
+    }
   }
 
   gainStars(stars: number) {
     this.victory += stars
-    if (this.victory >= Globals.victory) { this.winner = true }
+  }
+
+  isWinner() {
+    if (this.victory >= Globals.victory) {
+      this.winner = true
+    }
   }
 
   lostStars(stars: number) {
@@ -66,12 +81,6 @@ export class MonsterComponent implements OnInit {
 
   gainEnergy(energy: number) {
     this.energy += energy
-  }
-
-  // when I implement the cards, make sure this function does what I expect
-  lostEnergy(energy: number) {
-    const res = this.energy -= energy
-    this.energy = res > 0 ? res : 0
   }
 
   enterTokyo() {
@@ -88,5 +97,13 @@ export class MonsterComponent implements OnInit {
 
   leaveTokyoBay() {
     this.inTokyoBay = false;
+  }
+
+  activate() {
+    this.isActivate = true;
+  }
+
+  deActivate() {
+    this.isActivate = false;
   }
 }
